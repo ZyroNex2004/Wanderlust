@@ -22,11 +22,9 @@ const upload = multer({ storage });
   
   
     //create route
-    // router.post("/",validateListing,isLoggedIn,
-    //    wrapAsync(listingController.createListing));
-  router.post("/", upload.single('listing[image]'),(req,res) =>{
-    res.send(req.file);
-  })
+    router.post("/",isLoggedIn, upload.single('listing[image]'),validateListing,
+       wrapAsync(listingController.createListing));
+ 
   
     //Edit Route
     router.get("/:id/edit", isLoggedIn,isOwner, wrapAsync(listingController.renderEditForm));
