@@ -32,7 +32,7 @@ const upload = multer({ storage });
    
 
    //Update Route
-   router.put("/:id",isLoggedIn,isOwner,validateListing,
+   router.put("/:id",isLoggedIn,isOwner,upload.single('listing[image]'),validateListing,
      wrapAsync(listingController.updateListing));
   
   //Delete Route
